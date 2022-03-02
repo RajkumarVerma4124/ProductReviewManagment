@@ -21,7 +21,7 @@ namespace ProductReviewManagement
             {
                 while(true)
                 {
-                    Console.WriteLine("1: Add Product Review To List \n2: Show All Product Review \n3: Exit");
+                    Console.WriteLine("1: Add Product Review To List \n2: Show All Product Review \n3: Retreive Top 3 Ratings Record \n4: Exit");
                     Console.Write("Enter a choice from above : ");
                     bool flag = int.TryParse(Console.ReadLine(), out int choice);
                     if(flag)
@@ -37,6 +37,10 @@ namespace ProductReviewManagement
                                 ProductReviewManager.IterateOverList(productList);
                                 break;
                             case 3:
+                                //Calling the method to retrieve top 3 ratings records(UC2)
+                                ProductReviewManager.RetrieveTopThreeRatingsRecord(productList);
+                                break;
+                            case 4:
                                 Environment.Exit(0);
                                 break;
                             default:
