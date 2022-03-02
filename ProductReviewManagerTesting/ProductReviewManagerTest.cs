@@ -59,5 +59,14 @@ namespace ProductReviewManagerTesting
             var actual = ProductReviewManager.RetrieveProductIdAndReview(resProductReviewList);
             Assert.AreEqual(actual, expected);
         }
+
+        //Method to test the count of products by skipping top 5 records(UC6-TC6.1)
+        [TestMethod]
+        public void GivenListReturnCountAfterSkipRecords()
+        {
+            int expected = 20;
+            var actual = ProductReviewManager.SkipTopFiveRecords(resProductReviewList);
+            Assert.AreEqual(actual.Count, expected);
+        }
     }
 }

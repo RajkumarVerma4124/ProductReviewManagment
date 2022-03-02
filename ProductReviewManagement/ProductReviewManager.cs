@@ -56,13 +56,13 @@ namespace ProductReviewManagement
         {
             try
             {
-                if(products != null)
+                if (products != null)
                 {
                     foreach (ProductReview product in products)
                     {
                         Console.WriteLine(product);
                     }
-                } 
+                }
                 else
                     Console.WriteLine("No Products Review Added In The List");
             }
@@ -76,7 +76,7 @@ namespace ProductReviewManagement
         public static List<ProductReview> RetrieveTopThreeRatingsRecord(List<ProductReview> products)
         {
             //Using Linq sort product list in descending order and take first 3 elements
-            if( products != null)
+            if (products != null)
             {
                 var productRating = products.OrderByDescending(p => p.Rating).Take(3).ToList();
                 Console.WriteLine("\nPrinting Top 3 Products Reviews Records Based On Rating");
@@ -87,7 +87,7 @@ namespace ProductReviewManagement
             {
                 Console.WriteLine("No Products Review Added In The List");
                 return default;
-            }            
+            }
         }
 
         //Method to retrieve records from the list based on rating and product id(UC3)
@@ -116,7 +116,7 @@ namespace ProductReviewManagement
             {
                 int pCount = 0;
                 var resProductCount = products.GroupBy(x => x.ProductId).Select(p => new { productId = p.Key, count = p.Count() });
-                Console.WriteLine("\nPRINTING Count Product Review Based On Product Id----------------------");
+                Console.WriteLine("\nPrinting Count Of Product Review Based On Product Id");
                 foreach (var product in resProductCount)
                 {
                     Console.WriteLine($"Product Id : {product.productId}  \tProduct Count : {product.count}\n");
@@ -128,7 +128,7 @@ namespace ProductReviewManagement
             {
                 Console.WriteLine("No Products Review Added In The List");
                 return default;
-            }           
+            }
         }
 
         //Method to retrieve only productId and review from the list for all records(UC5)
@@ -145,6 +145,24 @@ namespace ProductReviewManagement
                     pCount++;
                 }
                 return pCount;
+            }
+            else
+            {
+                Console.WriteLine("No Products Review Added In The List");
+                return default;
+            }
+        }
+
+        //Method to retrieve all records by skipping top 5(UC6)
+        public static List<ProductReview> SkipTopFiveRecords(List<ProductReview> products)
+        {
+            //Using Linq sort to sort rating in descending order and skip 5 elements
+            if (products != null)
+            {
+                var resProductList = (from p in products orderby p.Rating descending select p).Skip(5).ToList();
+                Console.WriteLine("Printing Records By Skipping Top 5 Records");
+                IterateOverList(resProductList);
+                return resProductList;
             }
             else
             {

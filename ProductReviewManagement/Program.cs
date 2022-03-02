@@ -22,7 +22,7 @@ namespace ProductReviewManagement
                 while(true)
                 {
                     Console.WriteLine("1: Add Product Review To List \n2: Show All Product Review \n3: Retreive Top 3 Ratings Record \n4: Retreive Records Based On Rating And Product Id"+
-                        "\n5: Count Product Id \n6: Retrieve ProductId And Review \n7: Exit");
+                        "\n5: Count Product Id \n6: Retrieve ProductId And Review \n7: Retreive All Records By Skipping Top 5 \n8: Exit");
                     Console.Write("Enter a choice from above : ");
                     bool flag = int.TryParse(Console.ReadLine(), out int choice);
                     if(flag)
@@ -54,6 +54,10 @@ namespace ProductReviewManagement
                                 ProductReviewManager.RetrieveProductIdAndReview(productList);
                                 break;
                             case 7:
+                                //Calling the method to retrieve all products records by skiping top 5(UC6)
+                                ProductReviewManager.SkipTopFiveRecords(productList);
+                                break;
+                            case 8:
                                 Environment.Exit(0);
                                 break;
                             default:
