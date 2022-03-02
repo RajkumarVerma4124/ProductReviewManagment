@@ -23,7 +23,7 @@ namespace ProductReviewManagement
                 {
                     Console.WriteLine("1: Add Product Review To List \n2: Show All Product Review \n3: Retreive Top 3 Ratings Record \n4: Retreive Records Based On Rating And Product Id"+
                         "\n5: Count Product Id \n6: Retrieve ProductId And Review \n7: Retreive All Records By Skipping Top 5 \n8: Create DataTable And Add Values \n9: Retreive datatable records where islike is true"+
-                        "\n10: Average Rating Based On ProductId \n11: Retrieve Good Records \n12: Exit");
+                        "\n10: Average Rating Based On ProductId \n11: Retrieve Good Records \n12: Get Records Using UserId \n13: Exit");
                     Console.Write("Enter a choice from above : ");
                     bool flag = int.TryParse(Console.ReadLine(), out int choice);
                     if(flag)
@@ -76,6 +76,12 @@ namespace ProductReviewManagement
                                 ProductReviewManager.GetGoodRatingsRecordsFromTable(productList);
                                 break;
                             case 12:
+                                //Calling the method to get records based on userid(UC12)
+                                Console.Write("Enter The User Id : ");
+                                int userId = int.Parse(Console.ReadLine());
+                                ProductReviewManager.GetRecordsBasedOnUserId(productList, userId);
+                                break;
+                            case 13:
                                 Environment.Exit(0);
                                 break;
                             default:

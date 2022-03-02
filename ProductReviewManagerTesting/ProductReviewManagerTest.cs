@@ -91,17 +91,36 @@ namespace ProductReviewManagerTesting
         [TestMethod]
         public void GivenTableReturnTotalAverageRatings()
         {
-            double expected = 40.99;
+            double expected = 42.08;
             var actual = ProductReviewManager.GetAverageRatingsBasedOnPId(resProductReviewList);
             Assert.AreEqual(actual, expected);
         }
 
-        //Method to test the get good records method based on reviews count(UC11-TC11.1)
+        //Method to test the get good records count based on reviews(UC11-TC11.1)
         [TestMethod]
         public void GivenTableReturnGoodRecordsCount()
         {
             int expected = 13;
             var actual = ProductReviewManager.GetGoodRatingsRecordsFromTable(resProductReviewList);
+            Assert.AreEqual(actual, expected);
+        }
+
+        //Method to test the get records count based on userid(UC12-TC12.1)
+        [TestMethod]
+        [DataRow(1,2)]
+        [DataRow(2,2)]
+        [DataRow(3,1)]
+        [DataRow(4,1)]
+        [DataRow(5,1)]
+        [DataRow(6,2)]
+        [DataRow(7,1)]
+        [DataRow(8,4)]
+        [DataRow(9,4)]
+        [DataRow(10,4)]
+        [DataRow(11,3)]
+        public void GivenTableReturnRecordsBasedOnUserIds(int userId, int expected)
+        {
+            var actual = ProductReviewManager.GetRecordsBasedOnUserId(resProductReviewList, userId);
             Assert.AreEqual(actual, expected);
         }
     }
