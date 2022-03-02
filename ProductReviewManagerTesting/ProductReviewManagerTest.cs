@@ -87,12 +87,21 @@ namespace ProductReviewManagerTesting
             Assert.AreEqual(actual, expected);
         }
 
-        //Method to test the average ratings based on product id(UC10-TC10.1)
+        //Method to test the average ratings method based on product id(UC10-TC10.1)
         [TestMethod]
         public void GivenTableReturnTotalAverageRatings()
         {
             double expected = 40.99;
             var actual = ProductReviewManager.GetAverageRatingsBasedOnPId(resProductReviewList);
+            Assert.AreEqual(actual, expected);
+        }
+
+        //Method to test the get good records method based on reviews count(UC11-TC11.1)
+        [TestMethod]
+        public void GivenTableReturnGoodRecordsCount()
+        {
+            int expected = 13;
+            var actual = ProductReviewManager.GetGoodRatingsRecordsFromTable(resProductReviewList);
             Assert.AreEqual(actual, expected);
         }
     }

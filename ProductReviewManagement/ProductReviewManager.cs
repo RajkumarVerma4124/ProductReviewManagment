@@ -248,13 +248,36 @@ namespace ProductReviewManagement
             {
                 double totalAverage = 0;
                 DataTable dataTable = CreateDataTable(products);
-                var resatingAverage = from product in dataTable.AsEnumerable() group product by product.Field<int>("ProductId") into temp select new { productid = temp.Key, average = Math.Round(temp.Average(x => x.Field<double>("Rating")), 2) };
+                var resatingAverage = from columns in dataTable.AsEnumerable() group columns by columns.Field<int>("ProductId") into temp select new { productid = temp.Key, average = Math.Round(temp.Average(x => x.Field<double>("Rating")), 2) };
                 foreach (var row in resatingAverage)
                 {
                     Console.WriteLine("Product Id: {0} \tAverage Ratings: {1}", row.productid, row.average);
                     totalAverage += row.average;
                 }
                 return totalAverage;
+            }
+            else
+            {
+                Console.WriteLine("No Products Review Added In The List");
+                return default;
+            }
+        }
+
+        //Method to retreive good rating based on reviews from datatable(UC11)
+        public static double GetGoodRatingsRecordsFromTable(List<ProductReview> products)
+        {
+            if (products != null)
+            {
+                int rCount = 0;
+                DataTable dataTable = CreateDataTable(products);
+                var resRows = from table in dataTable.AsEnumerable() where table.Field<string>("Review").Contains("Very Good") || table.Field<string>("Review").Contains("Good") select table;
+                Console.WriteLine($"ProductId \tUserId \t\tRating  \tReview    \tIsLike");
+                foreach (var row in resRows)
+                {
+                    Console.WriteLine($"{row["ProductId"]} \t\t{row["UserId"]} \t\t{row["Rating"]}  \t\t{row["Review"]}    \t{row["IsLike"]}");
+                    rCount++;
+                }
+                return rCount;
             }
             else
             {
