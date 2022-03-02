@@ -217,5 +217,28 @@ namespace ProductReviewManagement
             }
 
         }
+
+        //Method to retreive records where is like is true(UC9)
+        public static int RetreiveRecordsBasedOnIsLike(List<ProductReview> products)
+        {
+            int rCount = 0;
+            if(products != null)
+            {
+                DataTable dataTable = CreateDataTable(products);
+                var resRows = from table in dataTable.AsEnumerable() where table.Field<bool>("IsLike") == true select table;
+                Console.WriteLine($"ProductId \tUserId \t\tRating  \tReview    \tIsLike");
+                foreach (var row in resRows)
+                {
+                    Console.WriteLine($"{row["ProductId"]} \t\t{row["UserId"]} \t\t{row["Rating"]}  \t\t{row["Review"]}    \t{row["IsLike"]}");
+                    rCount++;
+                }
+                return rCount;
+            }
+            else
+            {
+                Console.WriteLine("No Products Review Added In The List");
+                return default;
+            }           
+        }
     }
 }

@@ -77,5 +77,14 @@ namespace ProductReviewManagerTesting
             var actual = ProductReviewManager.CreateDataTable(resProductReviewList);
             Assert.AreEqual(actual.Rows.Count, expected);
         }
+
+        //Method to test the count of datatable records where islike is true(UC9-TC9.1)
+        [TestMethod]
+        public void GivenListReturnDtblRecordsBasedOnIsLike()
+        {
+            int expected = 15;
+            var actual = ProductReviewManager.RetreiveRecordsBasedOnIsLike(resProductReviewList);
+            Assert.AreEqual(actual, expected);
+        }
     }
 }
