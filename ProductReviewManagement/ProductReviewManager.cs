@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -185,6 +186,36 @@ namespace ProductReviewManagement
             }
             else
                 Console.WriteLine("No Products Review Added In The List");
+        }
+
+        //Method to create data table and add values(UC8)
+        public static DataTable CreateDataTable(List<ProductReview> products)
+        {
+            if (products != null)
+            {
+                //Initializing datatable
+                DataTable dataTable = new DataTable();
+                //Adding columns names to data table and thre type
+                dataTable.Columns.Add("ProductId", typeof(int));
+                dataTable.Columns.Add("UserId", typeof(int));
+                dataTable.Columns.Add("Rating", typeof(double));
+                dataTable.Columns.Add("Review", typeof(string));
+                dataTable.Columns.Add("IsLike", typeof(bool));
+                //Adding values to datatable
+                foreach (var data in products)
+                {
+                    //adding rows from product list to data table rows
+                    dataTable.Rows.Add(data.ProductId, data.UserId, data.Rating, data.Review, data.IsLike);
+                }
+                Console.WriteLine("Added The Rows Successfully In The Table Columns");
+                return dataTable;
+            }
+            else
+            {
+                Console.WriteLine("No Products Review Added In The List");
+                return default;
+            }
+
         }
     }
 }

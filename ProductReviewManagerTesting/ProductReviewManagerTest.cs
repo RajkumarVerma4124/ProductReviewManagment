@@ -68,5 +68,14 @@ namespace ProductReviewManagerTesting
             var actual = ProductReviewManager.SkipTopFiveRecords(resProductReviewList);
             Assert.AreEqual(actual.Count, expected);
         }
+
+        //Method to test the create datatable method and count 25 values added or not(UC8-TC8.1)
+        [TestMethod]
+        public void GivenListReturnDatatable()
+        {
+            int expected = 25;
+            var actual = ProductReviewManager.CreateDataTable(resProductReviewList);
+            Assert.AreEqual(actual.Rows.Count, expected);
+        }
     }
 }
