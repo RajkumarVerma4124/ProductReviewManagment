@@ -89,5 +89,23 @@ namespace ProductReviewManagement
                 return default;
             }            
         }
+
+        //Method to retrieve records from the list based on rating and product id(UC2)
+        public static List<ProductReview> RetrieveParticularRecords(List<ProductReview> products)
+        {
+            //Using Linq retreiving particular records
+            if (products != null)
+            {
+                var resProductList = (from product in products where (product.ProductId == 1 || product.ProductId == 4 || product.ProductId == 9) && product.Rating > 3 select product).ToList();
+                Console.WriteLine("\nPrinting Records Based On Rating And ProductId");
+                IterateOverList(resProductList);
+                return resProductList;
+            }
+            else
+            {
+                Console.WriteLine("No Products Review Added In The List");
+                return default;
+            }            
+        }
     }
 }

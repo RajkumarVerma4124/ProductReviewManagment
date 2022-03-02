@@ -24,12 +24,21 @@ namespace ProductReviewManagerTesting
             Assert.AreEqual(resProductReviewList.Count, expected);
         }
 
-        //Method to test that top 3 records from  the list based on rating is retrieved or not(UC2-TC2.1)
+        //Method to test the count of top 3 records from the list based on rating(UC2-TC2.1)
         [TestMethod]
         public void GivenListReturnTopThreeRatingsRecords()
         {
             int expected = 3;
             var actual = ProductReviewManager.RetrieveTopThreeRatingsRecord(resProductReviewList);
+            Assert.AreEqual(actual.Count, expected);
+        }
+
+        //Method to test the count of records from the list based on rating and product id(UC3-TC3.1)
+        [TestMethod]
+        public void GivenListReturnParticularRecords()
+        {
+            int expected = 6;
+            var actual = ProductReviewManager.RetrieveParticularRecords(resProductReviewList);
             Assert.AreEqual(actual.Count, expected);
         }
     }
