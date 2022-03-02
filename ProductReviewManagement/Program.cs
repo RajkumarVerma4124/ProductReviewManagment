@@ -21,7 +21,8 @@ namespace ProductReviewManagement
             {
                 while(true)
                 {
-                    Console.WriteLine("1: Add Product Review To List \n2: Show All Product Review \n3: Retreive Top 3 Ratings Record \n4: Retreive Records Based On Rating And Product Id\n5: Exit");
+                    Console.WriteLine("1: Add Product Review To List \n2: Show All Product Review \n3: Retreive Top 3 Ratings Record \n4: Retreive Records Based On Rating And Product Id"+
+                        "\n5: Count Product Id \n6: Exit");
                     Console.Write("Enter a choice from above : ");
                     bool flag = int.TryParse(Console.ReadLine(), out int choice);
                     if(flag)
@@ -45,6 +46,10 @@ namespace ProductReviewManagement
                                 ProductReviewManager.RetrieveParticularRecords(productList);
                                 break;
                             case 5:
+                                //Calling the method to retrieve product id and there count(UC4)
+                                ProductReviewManager.RetrieveProductIdCount(productList);
+                                break;
+                            case 6:
                                 Environment.Exit(0);
                                 break;
                             default:

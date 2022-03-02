@@ -90,7 +90,7 @@ namespace ProductReviewManagement
             }            
         }
 
-        //Method to retrieve records from the list based on rating and product id(UC2)
+        //Method to retrieve records from the list based on rating and product id(UC3)
         public static List<ProductReview> RetrieveParticularRecords(List<ProductReview> products)
         {
             //Using Linq retreiving particular records
@@ -105,7 +105,30 @@ namespace ProductReviewManagement
             {
                 Console.WriteLine("No Products Review Added In The List");
                 return default;
-            }            
+            }
+        }
+
+        //Method to retrieve count of review present for each product id records from the list (UC4)
+        public static int RetrieveProductIdCount(List<ProductReview> products)
+        {
+            //Using Linq retreive product id count records
+            if (products != null)
+            {
+                int pCount = 0;
+                var resProductCount = products.GroupBy(x => x.ProductId).Select(p => new { productId = p.Key, count = p.Count() });
+                Console.WriteLine("\nPRINTING Count Product Review Based On Product Id----------------------");
+                foreach (var product in resProductCount)
+                {
+                    Console.WriteLine($"Product Id : {product.productId}  \tProduct Count : {product.count}\n");
+                    pCount++;
+                }
+                return pCount;
+            }
+            else
+            {
+                Console.WriteLine("No Products Review Added In The List");
+                return default;
+            }           
         }
     }
 }

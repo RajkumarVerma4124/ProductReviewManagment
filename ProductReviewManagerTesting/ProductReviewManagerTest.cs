@@ -41,5 +41,14 @@ namespace ProductReviewManagerTesting
             var actual = ProductReviewManager.RetrieveParticularRecords(resProductReviewList);
             Assert.AreEqual(actual.Count, expected);
         }
+
+        //Method to test the count of product id count(UC4-TC4.1)
+        [TestMethod]
+        public void GivenListReturnProductIdCount()
+        {
+            int expected = 11;
+            var actual = ProductReviewManager.RetrieveProductIdCount(resProductReviewList);
+            Assert.AreEqual(actual, expected);
+        }
     }
 }
