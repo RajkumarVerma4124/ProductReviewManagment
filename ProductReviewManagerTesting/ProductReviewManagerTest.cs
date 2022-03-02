@@ -71,7 +71,7 @@ namespace ProductReviewManagerTesting
 
         //Method to test the create datatable method and count 25 values added or not(UC8-TC8.1)
         [TestMethod]
-        public void GivenListReturnDatatable()
+        public void GivenListCreateDatatable()
         {
             int expected = 25;
             var actual = ProductReviewManager.CreateDataTable(resProductReviewList);
@@ -80,10 +80,19 @@ namespace ProductReviewManagerTesting
 
         //Method to test the count of datatable records where islike is true(UC9-TC9.1)
         [TestMethod]
-        public void GivenListReturnDtblRecordsBasedOnIsLike()
+        public void GivenTableReturnDtblRecordsBasedOnIsLike()
         {
             int expected = 15;
             var actual = ProductReviewManager.RetreiveRecordsBasedOnIsLike(resProductReviewList);
+            Assert.AreEqual(actual, expected);
+        }
+
+        //Method to test the average ratings based on product id(UC10-TC10.1)
+        [TestMethod]
+        public void GivenTableReturnTotalAverageRatings()
+        {
+            double expected = 40.99;
+            var actual = ProductReviewManager.GetAverageRatingsBasedOnPId(resProductReviewList);
             Assert.AreEqual(actual, expected);
         }
     }

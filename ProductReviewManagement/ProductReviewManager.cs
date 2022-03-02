@@ -240,5 +240,27 @@ namespace ProductReviewManagement
                 return default;
             }           
         }
+
+        //Method to retreive average rating based on id(UC10)
+        public static double GetAverageRatingsBasedOnPId(List<ProductReview> products)
+        {
+            if (products != null)
+            {
+                double totalAverage = 0;
+                DataTable dataTable = CreateDataTable(products);
+                var resatingAverage = from product in dataTable.AsEnumerable() group product by product.Field<int>("ProductId") into temp select new { productid = temp.Key, average = Math.Round(temp.Average(x => x.Field<double>("Rating")), 2) };
+                foreach (var row in resatingAverage)
+                {
+                    Console.WriteLine("Product Id: {0} \tAverage Ratings: {1}", row.productid, row.average);
+                    totalAverage += row.average;
+                }
+                return totalAverage;
+            }
+            else
+            {
+                Console.WriteLine("No Products Review Added In The List");
+                return default;
+            }
+        }
     }
 }
