@@ -50,8 +50,9 @@ namespace ProductReviewManagement
                                 ProductReviewManager.RetrieveProductIdCount(productList);
                                 break;
                             case 6:
-                                //Calling the method to retrieve product id and review(UC5)
+                                //Calling the method to retrieve product id and review(UC5 && UC7)
                                 ProductReviewManager.RetrieveProductIdAndReview(productList);
+                                ProductReviewManager.RetrieveProductIdAndReviewBySelect(productList);
                                 break;
                             case 7:
                                 //Calling the method to retrieve all products records by skiping top 5(UC6)

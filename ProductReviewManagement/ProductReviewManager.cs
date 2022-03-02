@@ -139,6 +139,7 @@ namespace ProductReviewManagement
             {
                 int pCount = 0;
                 var productList = products.Select(p => new { productId = p.ProductId, review = p.Review }).ToList();
+                Console.WriteLine("\nPrinting Product Id and Product Review records");
                 foreach (var product in productList)
                 {
                     Console.WriteLine($"Product Id : {product.productId}  \tProduct Reviews : {product.review}");
@@ -169,6 +170,21 @@ namespace ProductReviewManagement
                 Console.WriteLine("No Products Review Added In The List");
                 return default;
             }
+        }
+
+        //Method to retrieve only productId and review from the list for all records by select (UC7)
+        public static void RetrieveProductIdAndReviewBySelect(List<ProductReview> products)
+        {
+            //Using select to retreive records
+            if (products != null)
+            {
+                var productList = from p in products select p;
+                Console.WriteLine("\nPrinting Product Id and Product Review records by using select");
+                foreach (var product in productList)
+                    Console.WriteLine($"Product Id : {product.ProductId}  \tProduct Reviews : {product.Review}");
+            }
+            else
+                Console.WriteLine("No Products Review Added In The List");
         }
     }
 }
