@@ -130,5 +130,27 @@ namespace ProductReviewManagement
                 return default;
             }           
         }
+
+        //Method to retrieve only productId and review from the list for all records(UC5)
+        public static int RetrieveProductIdAndReview(List<ProductReview> products)
+        {
+            //Using Linq retreive only productId and review
+            if (products != null)
+            {
+                int pCount = 0;
+                var productList = products.Select(p => new { productId = p.ProductId, review = p.Review }).ToList();
+                foreach (var product in productList)
+                {
+                    Console.WriteLine($"Product Id : {product.productId}  \tProduct Reviews : {product.review}");
+                    pCount++;
+                }
+                return pCount;
+            }
+            else
+            {
+                Console.WriteLine("No Products Review Added In The List");
+                return default;
+            }
+        }
     }
 }

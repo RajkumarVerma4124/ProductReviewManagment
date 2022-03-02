@@ -50,5 +50,14 @@ namespace ProductReviewManagerTesting
             var actual = ProductReviewManager.RetrieveProductIdCount(resProductReviewList);
             Assert.AreEqual(actual, expected);
         }
+
+        //Method to test the count of product id and review(UC5-TC5.1)
+        [TestMethod]
+        public void GivenListReturnProductIdAndReviewCount()
+        {
+            int expected = 25;
+            var actual = ProductReviewManager.RetrieveProductIdAndReview(resProductReviewList);
+            Assert.AreEqual(actual, expected);
+        }
     }
 }
